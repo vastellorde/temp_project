@@ -1,0 +1,214 @@
+## This file contains all the build statements describing the
+# compilation DAG.
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# 
+# Which is the root file.
+# =============================================================================
+
+# =============================================================================
+# Project: chess_sdl
+# Configurations: Debug
+# =============================================================================
+
+#############################################
+# Minimal version of Ninja required by this file
+
+ninja_required_version = 1.5
+
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
+# =============================================================================
+# Include auxiliary files.
+
+
+#############################################
+# Include rules file.
+
+include CMakeFiles/rules.ninja
+
+# =============================================================================
+
+#############################################
+# Logical path to working directory; prefix for absolute paths.
+
+cmake_ninja_workdir = /Users/armancukin/projects/chess_sdl/cmake-build-debug/
+# =============================================================================
+# Object build statements for EXECUTABLE target chess_sdl
+
+
+#############################################
+# Order-only phony target for chess_sdl
+
+build cmake_object_order_depends_target_chess_sdl: phony || CMakeFiles/chess_sdl.dir
+
+build CMakeFiles/chess_sdl.dir/main.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/main.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/main.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir
+
+build CMakeFiles/chess_sdl.dir/src/board.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/board.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/board.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src
+
+build CMakeFiles/chess_sdl.dir/src/Piece.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/Piece.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/Piece.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src
+
+build CMakeFiles/chess_sdl.dir/src/piece_list.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/piece_list.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/piece_list.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src
+
+build CMakeFiles/chess_sdl.dir/src/utils/fen_util.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/utils/fen_util.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/utils/fen_util.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src/utils
+
+build CMakeFiles/chess_sdl.dir/src/board_representation.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/board_representation.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/board_representation.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src
+
+build CMakeFiles/chess_sdl.dir/src/ui/piece_ui.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/ui/piece_ui.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/ui/piece_ui.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src/ui
+
+build CMakeFiles/chess_sdl.dir/src/utils/move_generator.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/utils/move_generator.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/utils/move_generator.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src/utils
+
+build CMakeFiles/chess_sdl.dir/src/utils/precomputed_move_data.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/utils/precomputed_move_data.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/utils/precomputed_move_data.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src/utils
+
+build CMakeFiles/chess_sdl.dir/src/utils/bitboard_util.cpp.o: CXX_COMPILER__chess_sdl_Debug /Users/armancukin/projects/chess_sdl/src/utils/bitboard_util.cpp || cmake_object_order_depends_target_chess_sdl
+  DEFINES = -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEP_FILE = CMakeFiles/chess_sdl.dir/src/utils/bitboard_util.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2b
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  OBJECT_FILE_DIR = CMakeFiles/chess_sdl.dir/src/utils
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target chess_sdl
+
+
+#############################################
+# Link the executable chess_sdl
+
+build chess_sdl: CXX_EXECUTABLE_LINKER__chess_sdl_Debug CMakeFiles/chess_sdl.dir/main.cpp.o CMakeFiles/chess_sdl.dir/src/board.cpp.o CMakeFiles/chess_sdl.dir/src/Piece.cpp.o CMakeFiles/chess_sdl.dir/src/piece_list.cpp.o CMakeFiles/chess_sdl.dir/src/utils/fen_util.cpp.o CMakeFiles/chess_sdl.dir/src/board_representation.cpp.o CMakeFiles/chess_sdl.dir/src/ui/piece_ui.cpp.o CMakeFiles/chess_sdl.dir/src/utils/move_generator.cpp.o CMakeFiles/chess_sdl.dir/src/utils/precomputed_move_data.cpp.o CMakeFiles/chess_sdl.dir/src/utils/bitboard_util.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib /opt/homebrew/lib/libspdlog.1.10.0.dylib /opt/homebrew/lib/libsfml-window.2.5.1.dylib /opt/homebrew/lib/libsfml-system.2.5.1.dylib /opt/homebrew/lib/libfmt.9.1.0.dylib
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
+  LINK_LIBRARIES = -Wl,-rpath,/opt/homebrew/lib  /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib  /opt/homebrew/lib/libspdlog.1.10.0.dylib  /opt/homebrew/lib/libsfml-window.2.5.1.dylib  /opt/homebrew/lib/libsfml-system.2.5.1.dylib  /opt/homebrew/lib/libfmt.9.1.0.dylib
+  OBJECT_DIR = CMakeFiles/chess_sdl.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = chess_sdl
+  TARGET_PDB = chess_sdl.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/armancukin/projects/chess_sdl/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/armancukin/projects/chess_sdl/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/armancukin/projects/chess_sdl -B/Users/armancukin/projects/chess_sdl/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Target aliases.
+
+# =============================================================================
+# Folder targets.
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/armancukin/projects/chess_sdl/cmake-build-debug
+
+build all: phony chess_sdl
+
+# =============================================================================
+# Built-in targets
+
+
+#############################################
+# Re-run CMake if any of its inputs changed.
+
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigDependencies.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigVersion.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets-release.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets.cmake /opt/homebrew/lib/cmake/fmt/fmt-config-version.cmake /opt/homebrew/lib/cmake/fmt/fmt-config.cmake /opt/homebrew/lib/cmake/fmt/fmt-targets-release.cmake /opt/homebrew/lib/cmake/fmt/fmt-targets.cmake /opt/homebrew/lib/cmake/spdlog/spdlogConfig.cmake /opt/homebrew/lib/cmake/spdlog/spdlogConfigTargets-release.cmake /opt/homebrew/lib/cmake/spdlog/spdlogConfigTargets.cmake /opt/homebrew/lib/cmake/spdlog/spdlogConfigVersion.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
+  pool = console
+
+
+#############################################
+# A missing CMake input file is not an error.
+
+build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigDependencies.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigVersion.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets-release.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets.cmake /opt/homebrew/lib/cmake/fmt/fmt-config-version.cmake /opt/homebrew/lib/cmake/fmt/fmt-config.cmake /opt/homebrew/lib/cmake/fmt/fmt-targets-release.cmake /opt/homebrew/lib/cmake/fmt/fmt-targets.cmake /opt/homebrew/lib/cmake/spdlog/spdlogConfig.cmake /opt/homebrew/lib/cmake/spdlog/spdlogConfigTargets-release.cmake /opt/homebrew/lib/cmake/spdlog/spdlogConfigTargets.cmake /opt/homebrew/lib/cmake/spdlog/spdlogConfigVersion.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean all the built files.
+
+build clean: CLEAN
+
+
+#############################################
+# Print all primary targets available.
+
+build help: HELP
+
+
+#############################################
+# Make the all target the default.
+
+default all
