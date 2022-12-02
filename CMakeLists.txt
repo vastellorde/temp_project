@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 
-add_executable(chess_sdl main.cpp src/board.cpp src/board.h src/Piece.cpp src/Piece.h src/piece_list.cpp src/piece_list.h src/utils/fen_util.cpp src/utils/fen_util.h src/utils/position_info.h src/board_representation.cpp src/board_representation.h src/ui/piece_ui.cpp src/ui/piece_ui.h src/utils/move_generator.cpp src/utils/move_generator.h src/utils/move.h src/utils/precomputed_move_data.cpp src/utils/precomputed_move_data.h src/utils/bitboard_util.cpp src/utils/bitboard_util.h)
+add_executable(chess_sdl main.cpp src/board.cpp src/board.h src/Piece.cpp src/Piece.h src/piece_list.cpp src/piece_list.h src/utils/fen_util.cpp src/utils/fen_util.h src/utils/position_info.h src/board_representation.cpp src/board_representation.h src/ui/piece_ui.cpp src/ui/piece_ui.h src/utils/move_generator.cpp src/utils/move_generator.h src/utils/move.h src/utils/precomputed_move_data.cpp src/utils/precomputed_move_data.h src/utils/bitboard_util.cpp src/utils/bitboard_util.h src/ui/board_ui.cpp src/ui/board_ui.h src/resources/Colors.cpp src/resources/Colors.h src/game_manager.cpp src/game_manager.h)
 
 find_package(spdlog REQUIRED)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

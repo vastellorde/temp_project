@@ -17,3 +17,16 @@ void PieceList::addPieceAtSquare(int square) {
 PieceList::PieceList() {
     occupiedSquares = std::vector<int>();
 }
+
+void PieceList::removePieceAtSquare(int square) {
+    int pieceIndex = mapPiece[square];
+    occupiedSquares[pieceIndex] = occupiedSquares[numPieces - 1];
+    mapPiece[occupiedSquares[pieceIndex]] = pieceIndex;
+    numPieces--;
+}
+
+void PieceList::movePiece(int startSquare, int targetSquare) {
+    int pieceIndex = mapPiece[startSquare];
+    occupiedSquares[pieceIndex] = targetSquare;
+    mapPiece[targetSquare] = pieceIndex;
+}

@@ -8,6 +8,7 @@
 
 #include <stack>
 #include "piece_list.h"
+#include "utils/move.h"
 
 class Board {
 public:
@@ -20,6 +21,8 @@ public:
     int colorToMove;
     int colorToMoveIndex;
     int opponentColor;
+    int fiftyMoveCounter = 0;
+    int plyCount;
     bool whiteToMove;
     std::vector<int> square = std::vector<int>(64);
 
@@ -36,8 +39,19 @@ public:
     void init();
 
     void LoadPosition();
+
+    void makeMove(Move move, bool inSearch = false);
+    void unmakeMove(Move move, bool inSearch = false);
 private:
     std::stack<unsigned int> gameStateHistory;
+
+    const unsigned int whiteCastleKingsideMask = 0b1111111111111110;
+    const unsigned int whiteCastleQeensideMask = 0b1111111111111101;
+    const unsigned int blackCastleKingsideMask = 0b1111111111111011;
+    const unsigned int blackCastleQeensideMask = 0b1111111111110111;
+
+    const unsigned int whiteCastleMask = whiteCastleKingsideMask & whiteCastleQeensideMask;
+    const unsigned int blackCastleMask = blackCastleKingsideMask & blackCastleQeensideMask;
 };
 
 

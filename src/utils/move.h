@@ -9,20 +9,24 @@
 #include "../Piece.h"
 #include "../board_representation.h"
 
-struct Flag {
-public:
-    static const int none = 0;
-    static const int enPassantCapture = 1;
-    static const int castling = 2;
-    static const int promoteToQueen = 3;
-    static const int promoteToKnight = 4;
-    static const int promoteToRook = 5;
-    static const int promoteToBishop = 6;
-    static const int pawnTwoForward = 7;
+enum Flag {
+    none = 0,
+    enPassantCapture = 1,
+    castling = 2,
+    promoteToQueen = 3,
+    promoteToKnight = 4,
+    promoteToRook = 5,
+    promoteToBishop = 6,
+    pawnTwoForward = 7,
 };
+
+const unsigned short startSquareMask = 0b0000000000111111;
+const unsigned short targetSquareMask = 0b0000111111000000;
+const unsigned short flagMask = 0b1111000000000000;
 
 struct Move {
 public:
+    Move() = default;
     explicit Move(unsigned short moveValueEx) {
         moveValue = moveValueEx;
     }
@@ -45,7 +49,7 @@ public:
 
     [[nodiscard]] bool isPromotion() const {
         int flag = getMoveFlag();
-        return flag == Flag::promoteToQueen || flag == Flag::promoteToRook || flag == Flag::promoteToKnight || flag == Flag::promoteToBishop;
+        return flag == promoteToQueen || flag == Flag::promoteToRook || flag == Flag::promoteToKnight || flag == Flag::promoteToBishop;
     }
 
     [[nodiscard]] int getMoveFlag() const {
@@ -89,8 +93,5 @@ public:
 
 private:
     unsigned short moveValue;
-    const unsigned short startSquareMask = 0b0000000000111111;
-    const unsigned short targetSquareMask = 0b0000111111000000;
-    const unsigned short flagMask = 0b1111000000000000;
 };
 #endif //CHESS_SDL_MOVE_H

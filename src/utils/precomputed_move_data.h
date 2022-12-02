@@ -7,20 +7,21 @@
 
 
 #include <cstddef>
+#include <array>
 #include "../board.h"
 #include "../board_representation.h"
 
 class PrecomputedMoveData {
 public:
-    int directionOffsets[8] = {8, -8, -1, 1, 7, -7, 9, -9};
+    std::array<int8_t, 8> directionOffsets = {8, -8, -1, 1, 7, -7, 9, -9};
     std::vector<std::vector<int>> numSquaresToEdge;
-    std::vector<std::vector<std::byte>> knightMoves;
-    std::vector<std::vector<std::byte>> kingMoves;
+    std::vector<std::vector<uint8_t>> knightMoves;
+    std::vector<std::vector<uint8_t>> kingMoves;
 
-    std::byte pawnAttackDirections[2][2] = {
-            {std::byte{4}, std::byte{6}},
-            {std::byte{5}, std::byte{7}}
-    };
+    std::array<std::array<uint8_t, 2>, 2> pawnAttackDirections = {{
+                                                                          {4, 6},
+                                                                          {5, 7}
+                                                                  }};
 
     std::vector<std::vector<int>> pawnAttacksWhite;
     std::vector<std::vector<int>> pawnAttacksBlack;

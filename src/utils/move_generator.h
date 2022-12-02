@@ -62,8 +62,9 @@ private:
     [[nodiscard]] bool squareIsInCheckRay(int square) const;
     [[nodiscard]] bool squareIsAttacked(int square) const;
     bool hasKingsideCastleRight();
+    bool hasQueensideCastleRight();
 
-    bool isPinned(int square) const;
+    [[nodiscard]] bool isPinned(int square) const;
     bool isMovingAlongRay(int rayDir, int startSquare, int targetSquare);
     bool inCheckAfterEnPassant(int startSquare, int targetSquare, int epCapturedPawnSquare);
     bool squareAttackedAfterEPCapture(int epCaptureSquare, int capturingPawnStartSquare);

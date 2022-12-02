@@ -48,6 +48,14 @@ PositionInfo FenUtil::PositionFromFen(std::string fen) {
         }
     }
 
+    if (sections.size() > 4) {
+        try {
+            positionInfo.plyCount = std::stoi(sections[4]);
+        } catch (std::invalid_argument const &e) {
+            positionInfo.plyCount = 0;
+        }
+    }
+
     return positionInfo;
 }
 

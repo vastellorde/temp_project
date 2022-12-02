@@ -50,26 +50,26 @@ void MoveGenerator::calculateAttackData() {
     }
 
     for (int dir = startDirIndex; dir < endDirIndex; dir++) {
-        bool isDiagonal = dir > 3;
-        int n = precomputedMoveData->numSquaresToEdge[friendlyKingSquare][dir];
-        int directionOffset = precomputedMoveData->directionOffsets[dir];
+        bool const isDiagonal = dir > 3;
+        int const n = precomputedMoveData->numSquaresToEdge[friendlyKingSquare][dir];
+        int8_t const directionOffset = precomputedMoveData->directionOffsets.at(dir);
         bool isFriendlyPieceAlongRay = false;
         unsigned long rayMask = 0;
 
         for (int i = 0; i < n; i++) {
-            int squareIdx = friendlyKingSquare + directionOffset * (i + 1);
+            int const squareIdx = friendlyKingSquare + directionOffset * (i + 1);
             rayMask |= 1ul << squareIdx;
-            int piece = m_board->square[squareIdx];
+            int const piece = m_board->square[squareIdx];
 
             if (piece != Piece::None) {
-                if (Piece::isColor(piece, friendlyColorIndex)) {
+                if (Piece::isColor(piece, friendlyColor)) {
                     if (!isFriendlyPieceAlongRay) {
                         isFriendlyPieceAlongRay = true;
                     } else {
                         break;
                     }
                 } else {
-                    int pieceType = Piece::pieceType(piece);
+                    int const pieceType = Piece::pieceType(piece);
                     if (isDiagonal && Piece::isBishopOrQueen(pieceType) || !isDiagonal && Piece::isRookOrQueen(pieceType)) {
                         if (isFriendlyPieceAlongRay) {
                             pinExistInPosition = true;
@@ -92,12 +92,12 @@ void MoveGenerator::calculateAttackData() {
         }
     }
 
-    PieceList opponentKnights = m_board->knights[opponentColorIndex];
+    PieceList const opponentKnights = m_board->knights[opponentColorIndex];
     opponentKnightAttacks = 0;
     bool isKnightCheck = false;
 
     for (int knightIndex = 0; knightIndex < opponentKnights.count(); knightIndex++) {
-        int startSquare = opponentKnights[knightIndex];
+        int const startSquare = opponentKnights[knightIndex];
         opponentKnightAttacks |= precomputedMoveData->knightAttackBitboards[startSquare];
 
         if (!isKnightCheck && BitboardUtil::containsSquare(opponentKnightAttacks, friendlyKingSquare)) {
@@ -108,13 +108,13 @@ void MoveGenerator::calculateAttackData() {
         }
     }
 
-    PieceList opponentPawns = m_board->pawns[opponentColorIndex];
+    PieceList const opponentPawns = m_board->pawns[opponentColorIndex];
     opponentPawnAttackMap = 0;
     bool isPawnCheck = false;
 
     for (int pawnIndex = 0; pawnIndex < opponentPawns.count(); pawnIndex++) {
-        int pawnSquare = opponentPawns[pawnIndex];
-        unsigned long pawnAttacks = precomputedMoveData->pawnAttackBitboards[pawnSquare][friendlyKingSquare];
+        int const pawnSquare = opponentPawns[pawnIndex];
+        unsigned long const pawnAttacks = precomputedMoveData->pawnAttackBitboards[pawnSquare][opponentColorIndex];
         opponentPawnAttackMap |= pawnAttacks;
 
         if (!isPawnCheck && BitboardUtil::containsSquare(pawnAttacks, friendlyKingSquare)) {
@@ -125,7 +125,7 @@ void MoveGenerator::calculateAttackData() {
         }
     }
 
-    int enemyKingSquare = m_board->kingSquare[opponentColorIndex];
+    int const enemyKingSquare = m_board->kingSquare[opponentColorIndex];
 
     opponentAttackMapNoPawns = opponentSlidingAttackMap | opponentKnightAttacks | precomputedMoveData->kingAttackBitboards[enemyKingSquare];
     opponentAttackMap = opponentAttackMapNoPawns | opponentPawnAttackMap;
@@ -133,16 +133,16 @@ void MoveGenerator::calculateAttackData() {
 
 void MoveGenerator::generateKingMoves() {
     for (auto & i : precomputedMoveData->kingMoves[friendlyKingSquare]) {
-        int targetSquare = static_cast<int>(i);
-        int pieceOnTargetSquare = m_board->square[targetSquare];
+        int const targetSquare = i;
+        int const pieceOnTargetSquare = m_board->square[targetSquare];
 
         if (Piece::isColor(pieceOnTargetSquare, friendlyColor)) {
             continue;
         }
 
-        bool isCapture = Piece::isColor(pieceOnTargetSquare, opponentColor);
+        bool const isCapture = Piece::isColor(pieceOnTargetSquare, opponentColor);
 
-        if (isCapture) {
+        if (!isCapture) {
             if (!genQuiets || squareIsInCheckRay(targetSquare)) {
                 continue;
             }
@@ -153,14 +153,14 @@ void MoveGenerator::generateKingMoves() {
 
             if (!isCheck && !isCapture) {
                 if ((targetSquare == BoardRepresentation::f1 || targetSquare == BoardRepresentation::f8) && hasKingsideCastleRight()) {
-                    int castleKingSquare = targetSquare + 1;
+                    int const castleKingSquare = targetSquare + 1;
                     if (m_board->square[castleKingSquare] == Piece::None) {
                         if (!squareIsAttacked(castleKingSquare)) {
                             moves.emplace_back(friendlyKingSquare, castleKingSquare, Flag::castling);
                         }
                     }
-                } else if ((targetSquare == BoardRepresentation::d1 || targetSquare == BoardRepresentation::d8) && hasKingsideCastleRight()) {
-                    int castleQueenSquare = targetSquare - 1;
+                } else if ((targetSquare == BoardRepresentation::d1 || targetSquare == BoardRepresentation::d8) && hasQueensideCastleRight()) {
+                    int const castleQueenSquare = targetSquare - 1;
                     if (m_board->square[castleQueenSquare] == Piece::None && m_board->square[castleQueenSquare - 1] == Piece::None) {
                         if (!squareIsAttacked(castleQueenSquare)) {
                             moves.emplace_back(friendlyKingSquare, castleQueenSquare, Flag::castling);
@@ -178,14 +178,14 @@ void MoveGenerator::generateSlidingMoves() {
         generateSlidingPieceMove(rooks[i], 0, 4);
     }
 
-    PieceList queens = m_board->queens[friendlyColorIndex];
-    for (int i = 0; i < queens.count(); i++) {
-        generateSlidingPieceMove(queens[i], 0, 8);
-    }
-
     PieceList bishops = m_board->bishop[friendlyColorIndex];
     for (int i = 0; i < bishops.count(); i++) {
         generateSlidingPieceMove(bishops[i], 4, 8);
+    }
+
+    PieceList queens = m_board->queens[friendlyColorIndex];
+    for (int i = 0; i < queens.count(); i++) {
+        generateSlidingPieceMove(queens[i], 0, 8);
     }
 }
 
@@ -193,33 +193,35 @@ void MoveGenerator::generateKnightMoves() {
     PieceList myKnights = m_board->knights[friendlyColorIndex];
 
     for (int i = 0; i < myKnights.count(); i++) {
-        int startSquare = myKnights[i];
+        int const startSquare = myKnights[i];
 
         if (isPinned(startSquare)) {
             continue;
         }
 
         for (int knightMoveIdx = 0; knightMoveIdx < precomputedMoveData->knightMoves[startSquare].size(); knightMoveIdx++) {
-            int targetSquare = static_cast<int>(precomputedMoveData->knightMoves[startSquare][knightMoveIdx]);
-            int targetSquarePiece = m_board->square[targetSquare];
-            bool isCapture = Piece::isColor(targetSquarePiece, opponentColor);
+            int const targetSquare = precomputedMoveData->knightMoves[startSquare][knightMoveIdx];
+            int const targetSquarePiece = m_board->square[targetSquare];
+            bool const isCapture = Piece::isColor(targetSquarePiece, opponentColor);
 
             if (genQuiets || isCapture) {
-                continue;
+                if (Piece::isColor(targetSquarePiece, friendlyColor) || (isCheck && !squareIsInCheckRay(targetSquare))) {
+                    continue;
+                }
+                moves.emplace_back(startSquare, targetSquare);
             }
-            moves.emplace_back(startSquare, targetSquare);
         }
     }
 }
 
 void MoveGenerator::generatePawnMoves() {
-    PieceList myPawns = m_board->pawns[friendlyColorIndex];
+    PieceList const myPawns = m_board->pawns[friendlyColorIndex];
 
-    int pawnOffset = friendlyColor == Piece::White ? 8 : -8;
-    int startRank = m_board->whiteToMove ? 1 : 6;
-    int finalRankBeforePromotion = m_board->whiteToMove ? 6 : 1;
+    int const pawnOffset = friendlyColor == Piece::White ? 8 : -8;
+    int const startRank = m_board->whiteToMove ? 1 : 6;
+    int const finalRankBeforePromotion = m_board->whiteToMove ? 6 : 1;
 
-    int enPassantFile = ((static_cast<int>(m_board->currentGameState) >> 4) & 15) - 1;
+    int const enPassantFile = ((static_cast<int>(m_board->currentGameState) >> 4) & 15) - 1;
     int enPassantSquare = -1;
 
     if (enPassantFile != -1) {
@@ -227,12 +229,12 @@ void MoveGenerator::generatePawnMoves() {
     }
 
     for (int i = 0; i < myPawns.count(); i++) {
-        int startSquare = myPawns[i];
-        int rank = BoardRepresentation::rankIndex(startSquare);
-        bool oneStepFromPromotion = rank == finalRankBeforePromotion;
+        int const startSquare = myPawns[i];
+        int const rank = BoardRepresentation::rankIndex(startSquare);
+        bool const oneStepFromPromotion = rank == finalRankBeforePromotion;
 
         if (genQuiets) {
-            int squareOneForward = startSquare + pawnOffset;
+            int const squareOneForward = startSquare + pawnOffset;
 
             if (m_board->square[squareOneForward] == Piece::None) {
                 if (!isPinned(squareOneForward) || isMovingAlongRay(pawnOffset, startSquare, friendlyKingSquare)) {
@@ -245,7 +247,7 @@ void MoveGenerator::generatePawnMoves() {
                     }
 
                     if (rank == startRank) {
-                        int squareTwoForward = squareOneForward + pawnOffset;
+                        int const squareTwoForward = squareOneForward + pawnOffset;
                         if (m_board->square[squareTwoForward] == Piece::None) {
                             if (!isCheck || squareIsInCheckRay(squareTwoForward)) {
                                 moves.emplace_back(startSquare, squareTwoForward, Flag::pawnTwoForward);
@@ -256,11 +258,11 @@ void MoveGenerator::generatePawnMoves() {
             }
         }
 
-        for(auto & pawnAttackDirection : precomputedMoveData->pawnAttackDirections) {
-            if (precomputedMoveData->numSquaresToEdge[startSquare][reinterpret_cast<unsigned long>(pawnAttackDirection)] > 0) {
-                int pawnCaptureDir = precomputedMoveData->directionOffsets[reinterpret_cast<unsigned long>(pawnAttackDirection)];
-                int targetSquare = startSquare + pawnCaptureDir;
-                int targetPiece = m_board->square[targetSquare];
+        for (int j = 0; j < 2; j++) {
+            if (precomputedMoveData->numSquaresToEdge[startSquare][precomputedMoveData->pawnAttackDirections[friendlyColorIndex][j]] > 0) {
+                int const pawnCaptureDir = precomputedMoveData->directionOffsets[precomputedMoveData->pawnAttackDirections[friendlyColorIndex][j]];
+                int const targetSquare = startSquare + pawnCaptureDir;
+                int const targetPiece = m_board->square[targetSquare];
 
                 if (!isPinned(startSquare) && !isMovingAlongRay(pawnCaptureDir, friendlyKingSquare, startSquare)) {
                     continue;
@@ -278,13 +280,15 @@ void MoveGenerator::generatePawnMoves() {
                 }
 
                 if (targetSquare == enPassantSquare) {
-                    int epCapturePawnSquare = targetSquare + (m_board->whiteToMove ? -8 : 8);
+                    int const epCapturePawnSquare = targetSquare + (m_board->whiteToMove ? -8 : 8);
                     if (!inCheckAfterEnPassant(startSquare, targetSquare, epCapturePawnSquare)) {
                         moves.emplace_back(startSquare, targetSquare, Flag::enPassantCapture);
                     }
                 }
             }
         }
+
+
     }
 }
 
@@ -309,13 +313,13 @@ void MoveGenerator::getSlidingAttackMap() {
 
 void MoveGenerator::updateSlidingAttackPiece(int startSquare, int startDirIndex, int endDirIndex) {
     for (int directionIdx = startDirIndex; directionIdx < endDirIndex; directionIdx++) {
-        int currDirOffset = precomputedMoveData->directionOffsets[directionIdx];
+        int8_t const currDirOffset = precomputedMoveData->directionOffsets.at(directionIdx);
         for (int n = 0; n < precomputedMoveData->numSquaresToEdge[startSquare][directionIdx]; n++) {
             int targetSquare = startSquare + currDirOffset * (n + 1);
             int targetSquarePiece = m_board->square[targetSquare];
             opponentSlidingAttackMap |= 1ul << targetSquare;
             if (targetSquare != friendlyKingSquare) {
-                if (targetSquarePiece != friendlyKingSquare) {
+                if (targetSquarePiece != Piece::None) {
                     break;
                 }
             }
@@ -346,7 +350,7 @@ void MoveGenerator::generateSlidingPieceMove(int startSquare, int startDirIndex,
     for (int directionIdx = startDirIndex; directionIdx < endDirIndex; directionIdx++) {
         int currDirOffset = precomputedMoveData->directionOffsets[directionIdx];
 
-        if (isPinned && isMovingAlongRay(currDirOffset, friendlyKingSquare, startSquare)) {
+        if (isPinned && !isMovingAlongRay(currDirOffset, friendlyKingSquare, startSquare)) {
             continue;
         }
 
@@ -434,8 +438,8 @@ bool MoveGenerator::squareAttackedAfterEPCapture(int epCaptureSquare, int captur
     }
 
     for (int i = 0; i < 2; i++) {
-        if (precomputedMoveData->numSquaresToEdge[friendlyKingSquare][static_cast<int>(precomputedMoveData->pawnAttackDirections[friendlyColorIndex][i])] > 0) {
-            int piece = m_board->square[friendlyKingSquare + precomputedMoveData->directionOffsets[static_cast<int>(precomputedMoveData->pawnAttackDirections[friendlyColorIndex][i])]];
+        if (precomputedMoveData->numSquaresToEdge[friendlyKingSquare][precomputedMoveData->pawnAttackDirections[friendlyColorIndex][i]] > 0) {
+            int const piece = m_board->square[friendlyKingSquare + precomputedMoveData->directionOffsets[precomputedMoveData->pawnAttackDirections[friendlyColorIndex][i]]];
             if (piece == (Piece::Pawn | opponentColor)) {
                 return  true;
             }
@@ -443,4 +447,9 @@ bool MoveGenerator::squareAttackedAfterEPCapture(int epCaptureSquare, int captur
     }
 
     return false;
+}
+
+bool MoveGenerator::hasQueensideCastleRight() {
+    int const mask = m_board->whiteToMove ? 2 : 8;
+    return (m_board->currentGameState & mask) != 0;
 }

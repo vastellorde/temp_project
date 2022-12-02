@@ -15,6 +15,8 @@ public:
     std::vector<int> occupiedSquares;
 
     void addPieceAtSquare(int square);
+    void removePieceAtSquare(int square);
+    void movePiece(int startSquare, int targetSquare);
 
     const int& operator [](int idx) const {
         return occupiedSquares[idx];

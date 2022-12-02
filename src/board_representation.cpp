@@ -35,3 +35,7 @@ std::string BoardRepresentation::squareNameFromIndex(int index) {
 std::string BoardRepresentation::squareNameFromCoords(sf::Vector2<int> coords) {
     return squareNameFromCoords(coords.x, coords.y);
 }
+
+int BoardRepresentation::indexFromCoords(sf::Vector2<int> coords) {
+    return indexFromCoords(coords.x, coords.y);
+}
